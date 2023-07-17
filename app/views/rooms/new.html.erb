@@ -1,0 +1,37 @@
+<h3>ユーザー新規作成</h3>
+ 
+ <%= form_with model: @room do |f| %>
+   <table>
+     <tr>
+       <th><%= f.label :home_name ,"施設名" %></th>
+       <td><%= f.text_field :home_name %></td>
+     </tr>
+ 
+     <tr>
+       <th><%= f.label :home_type ,"施設詳細" %></th>
+       <td><%= f.text_area :home_type %></td>
+     </tr>
+ 
+     <tr>
+       <th><%= f.label :money ,"料金" %></th>
+       <td><%= f.text_field :money %></td>
+     </tr>
+ 
+     <tr>
+       <th><%= f.label :address ,"住所" %></th>
+       <td><%= f.text_field :address %></td>
+     </tr>
+
+     <tr>
+       <th><%= f.label :home_image ,"画像をアップロード" %></th>
+       <td><%= f.file_field :home_image, class: "home_image" %></td>
+     </tr>
+   </table>
+ 
+   <div>
+     <ul>
+       <li><%= f.submit "保存する"%></li>
+       <li><%= link_to "キャンセル", :back %></li>
+     </ul>
+   </div>
+ <% end %>
