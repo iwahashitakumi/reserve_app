@@ -10,25 +10,33 @@
       <th>画像</th>
       <th>施設名</th>
       <th>紹介文</th>
-      <th料金</th>
+      <th>料金</th>
       <th>作成日</th>
+      <th>編集</th>
+      <th>削除</th>
     </tr>
   </thead>
 
   <tbody>
     <% @rooms.each do |room| %>
       <tr>
-        <td><%= image_tag room.home_image.url %></td>
-        <td><%= room.home_name %></td>
+        <td>
+          <% if room.home_image? %>
+            <%= image_tag room.home_image.url %>
+          <% else %>
+            <%= image_tag '/assets/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png',:alt => '施設画像' %>
+          <% end %>
+        </td>
+        <td><%= link_to room.home_name, room %></td>
         <td><%= room.home_type %></td>
         <td><%= room.money %></td>
-        <td><%= room.created_at.to_s(:datetime_jp) %></td>
-        <td><%= link_to "編集", [:edit_rooms, room] %></td>
+        <td><%= room.created_at.strftime("%Y/ %m/ %d") %></td>
+        <td><%= link_to "編集", [:edit, room]  %></td>
+        <td><%= link_to "削除",room, data: { turbo_method: :delete, turbo_confirm: "施設を削除しますか？" } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<p><%= link_to "施設新規登録", :new_rooms %></p>
+<p><%= link_to "施設新規登録", :new_room %></p>
 
-<%= paginate @rooms %>
