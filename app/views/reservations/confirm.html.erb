@@ -1,0 +1,30 @@
+<h3>予約の確認</h3>
+<table>
+  <tr>
+    <th>チェックイン</th>
+    <td><%= @reservation.start_date %</td>
+  </tr>
+  <tr>
+    <th>チェックアウト</th>
+    <td><%= @reservation.end_date %></td>
+  </tr>
+  <tr>
+    <th>人数</th>
+    <td><%= @reservation.people %></td>
+  </tr>
+  <tr>
+    <th>日数</th>
+    <td><%= @reservation.days %></td>
+  </tr>
+  <tr>
+    <th>お支払い金額</th>
+    <td><%= @reservations.total %></td>
+  </tr>
+</table>
+<p>上記内容で正しければ「確定」ボタンを押してください。</p>
+
+
+<ul>
+    <li><%= link_to "確定する", :reservetions_confirm %></li>
+    <li><%= link_to "キャンセル", :back %></li>
+</ul>

@@ -1,0 +1,36 @@
+<table>
+ <thead>
+   <tr>
+     <th>画像</th>
+     <th>施設名</th>
+     <th>紹介文</th>
+     <th>合計料金</th>
+     <th>チェックイン</th>
+     <th>チェックアウト</th>
+     <th>予定確定日時</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+   <% @rooms.each do |room| %>
+    <% room.reservations.each do |reservation| %>
+      <tr>
+        <td>
+        <% if reservation.room.home_image? %>
+            <%= image_tag reservation.room.home_image.url %>
+        <% else %>
+            <%= image_tag '/assets/default-home-image.png',:alt => '施設画像' %>
+        <% end %>
+        </td>
+        <td><%= link_to reservation.room.home_name, reservation %></td>
+        <td><%= reservation.room.home_type %></td>
+        <td><%= reservation.total %></td>
+        <td><%= reservation.start_date %></td>
+        <td><%= reservation.end_date %></td>
+        <td><%= reservation.created_at.strftime("%Y/ %m/ %d") %></td>
+      </tr>
+    <% end %>
+   <% end %>
+  </tbody>
+</table>

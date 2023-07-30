@@ -21,11 +21,11 @@
     <% @rooms.each do |room| %>
       <tr>
         <td>
-          <% if room.home_image? %>
+        <% if room.home_image? %>
             <%= image_tag room.home_image.url %>
-          <% else %>
-            <%= image_tag '/assets/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png',:alt => '施設画像' %>
-          <% end %>
+        <% else %>
+            <%= image_tag '/assets/default-home-image.png',:alt => '施設画像' %>
+        <% end %>
         </td>
         <td><%= link_to room.home_name, room %></td>
         <td><%= room.home_type %></td>

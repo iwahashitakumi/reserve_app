@@ -1,1 +1,8 @@
+<%= search_form_for @q do |f| %>
+  <!--name_contは、あいまい検索を指定-->
+  <%= f.label :address_cont, "住所" %>
+  <%= f.search_field :address_cont %>
+  <%= f.submit "検索" %>
+<% end %>
+
 <h3>あなたも旅に出よう</h3>

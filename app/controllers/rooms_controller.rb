@@ -1,12 +1,12 @@
 class RoomsController < ApplicationController
-  def index
-    @rooms = Room.all
+ def index
+  @rooms = Room.all
  end
  def new
-  @room = Room.new
+  @room = current_user.Room.new
  end
  def create
-   @room = Room.new(params.require(:room).permit(:home_name, :address, :home_type, :money, :home_image))
+  @room = current_user.Room.new(params.require(:room).permit(:home_name, :address, :home_type, :money, :home_image))
    if @room.save
      redirect_to :rooms_index, notice: "保存しました。"
    else
@@ -41,6 +41,8 @@ class RoomsController < ApplicationController
  end
 
  def top
+  @q = Room.ransack(params[:q])
+  @rooms = @q.result(distinct: true)
  end
 
 end
