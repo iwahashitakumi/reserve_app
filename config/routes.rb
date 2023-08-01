@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'rooms#top'
   get 'top/index'
   get 'users/index'
+  get 'users/profile'
   get 'reservetions/confirm'
   get 'reservetions/index'
   get 'rooms/index'
