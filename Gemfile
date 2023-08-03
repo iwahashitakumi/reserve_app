@@ -70,9 +70,13 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
+gem 'webpacker'
 gem 'devise'
 gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'carrierwave'
 gem 'ransack'
+gem 'bulma-rails', '~> 0.7.4'
+gem 'bulma-extensions-rails', '~> 1.0.30'
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'

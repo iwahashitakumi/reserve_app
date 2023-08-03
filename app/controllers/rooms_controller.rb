@@ -1,12 +1,14 @@
 class RoomsController < ApplicationController
+
+  skip_before_action :authenticate_user!, only: %i[top]
  def index
   @rooms = Room.all
  end
  def new
-  @room = current_user.Room.new
+  @room = current_user.room.build
  end
  def create
-  @room = current_user.Room.new(params.require(:room).permit(:home_name, :address, :home_type, :money, :home_image))
+  @room = current_user.room.new(params.require(:room).permit(:home_name, :address, :home_type, :money, :home_image))
    if @room.save
      redirect_to :rooms_index, notice: "保存しました。"
    else
