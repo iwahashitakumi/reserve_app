@@ -1,0 +1,30 @@
+<h2>プロフィール</h2>
+
+ <table>
+   <tr>
+     <th>ユーザー名</th>
+     <td><%= @users.name %></td>
+   </tr>
+   <tr>
+     <th>アイコン画像</th>
+     <td>
+        <% if @users.image? %>
+           <%= image_tag(@users.image) %>
+         <% else %>
+          <%= image_tag '/assets/default-avatar-image.png',alt: 'プロフィール画像', class: 'profile' %>
+        <% end %>
+     </td>
+   </tr>
+   <tr>
+     <th>自己紹介</th>
+     <td><%= @users.introduction %></td>
+   </tr>
+   <tr>
+     <th>編集</th>
+     <td><%= link_to "編集", users_profiles_edit_path %></td>
+   </tr>
+   <tr>
+     <th>アカウント</th>
+     <td><%= link_to "アカウントペーシへ", users_accounts_index_path %></td>
+   </tr>
+ </table>

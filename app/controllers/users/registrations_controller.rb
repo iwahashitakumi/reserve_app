@@ -14,15 +14,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
+   GET /resource/edit
+   def edit
+     super
+   end
 
-  # PUT /resource
-  # def update
-  #   super
-  # end
+   PUT /resource
+   def update
+     super
+   end
 
   # DELETE /resource
   # def destroy
@@ -59,4 +59,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  protected
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
 end

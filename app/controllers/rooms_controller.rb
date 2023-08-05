@@ -2,20 +2,24 @@ class RoomsController < ApplicationController
 
   skip_before_action :authenticate_user!, only: %i[top]
  def index
-  @rooms = Room.all
+  @users = current_user
+  @rooms = @users.rooms.all
  end
  def new
-  @room = current_user.room.build
+  @user = current_user
+  @room = @user.rooms.new
  end
  def create
-  @room = current_user.room.new(params.require(:room).permit(:home_name, :address, :home_type, :money, :home_image))
+  @user = current_user
+  @room = @user.rooms.new(params.require(:room).permit(:home_name, :address, :home_type, :money, :home_image))
    if @room.save
      redirect_to :rooms_index, notice: "保存しました。"
    else
      flash[:alert] = "問題が発生しました。"
      redirect_to :rooms_index
    end
- end
+  end
+
  def show
   @room = Room.find(params[:id])
  end

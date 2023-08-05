@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users
+  namespace :users do
+   get 'profiles/index'
+   get 'profiles/edit'
+   get 'accounts/index'
+  end
   root 'rooms#top'
   get 'users/index'
-  get 'users/profile'
   get 'reservetions/confirm'
   get 'reservetions/index'
   get 'rooms/index'
@@ -9,7 +14,6 @@ Rails.application.routes.draw do
   
   resources :rooms
   resources :reservations
-  devise_for :users
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

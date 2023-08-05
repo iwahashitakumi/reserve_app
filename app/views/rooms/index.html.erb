@@ -24,7 +24,7 @@
         <% if room.home_image? %>
             <%= image_tag room.home_image.url %>
         <% else %>
-            <%= image_tag '/assets/default-home-image.png',:alt => '施設画像' %>
+            <%= image_tag '/assets/default-home-image.png',:alt => '施設画像', class: 'home_image' %>
         <% end %>
         </td>
         <td><%= link_to room.home_name, room %></td>
