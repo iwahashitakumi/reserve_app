@@ -13,8 +13,7 @@
 
 
   <tbody>
-   <% @rooms.each do |room| %>
-    <% room.reservations.each do |reservation| %>
+   <% @reservations.each do |reservation| %>
       <tr>
         <td>
         <% if reservation.room.home_image? %>
@@ -31,6 +30,5 @@
         <td><%= reservation.created_at.strftime("%Y/ %m/ %d") %></td>
       </tr>
     <% end %>
-   <% end %>
   </tbody>
 </table>

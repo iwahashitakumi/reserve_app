@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   end
   root 'rooms#top'
   get 'users/index'
-  get 'reservetions/confirm'
-  get 'reservetions/index'
+  get 'reservations/confirm'
+  get 'reservations/index'
   get 'rooms/index'
   get 'rooms/search'
   

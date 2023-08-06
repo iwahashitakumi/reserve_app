@@ -16,7 +16,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to "施設の新規登録", new_room_path, class: "dropdown-item" %>
               <%= link_to "登録済み一覧", rooms_index_path, class: "dropdown-item" %>
-              <%= link_to "予約済み一覧", reservetions_index_path, class: "dropdown-item" %>
+              <%= link_to "予約済み一覧", reservations_index_path, class: "dropdown-item" %>
               <%= link_to "アカウント設定", users_profiles_index_path, class: "dropdown-item" %>
               <%= link_to "ログアウト", destroy_user_session_path, {method: :delete, class: "dropdown-item",data: {confirm: "ログアウトしますか？"} } %>
             </div>

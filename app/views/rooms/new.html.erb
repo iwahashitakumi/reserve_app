@@ -27,7 +27,7 @@
        <td><%= f.file_field :home_image, placeholder:"画像をアップロード", class: "home_image" %></td>
      </tr>
    </table>
- 
+       <%= f.hidden_field :user_id, value: @user.id %>
    <div>
      <ul>
        <li><%= f.submit "保存する"%></li>
