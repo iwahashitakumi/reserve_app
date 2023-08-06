@@ -1,13 +1,13 @@
 class ReservationsController < ApplicationController
 
   def index
-    @rooms = Room.find(params[:room_id])
+    room = current_user.rooms.all
     @reservations = current_user.reservations.all
-    start_date = Date.parse(@reservations.start_date)
+    start_date = @reservations.start_date
     end_date = Date.parse(params.require(:reservation).permit(:start_date, :end_date)[:end_date])
     days = (end_date - start_date).to_i + 1
     @reservations.days = days
-    @reservations.room = @rooms
+    @reservations.room = rooms
     @reservations.money = room.money
     @reservations.total = room.money * days * room.people
   end
