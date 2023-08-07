@@ -1,42 +1,38 @@
 class ReservationsController < ApplicationController
 
   def index
-    room = current_user.rooms.all
-    @reservations = current_user.reservations.all
-    start_date = @reservations.start_date
-    end_date = Date.parse(params.require(:reservation).permit(:start_date, :end_date)[:end_date])
-    days = (end_date - start_date).to_i + 1
-    @reservations.days = days
-    @reservations.room = rooms
-    @reservations.money = room.money
-    @reservations.total = room.money * days * room.people
+    @reservations = Reservation.where(user_id: current_user.id)
+    @reservations = Reservation.all.includes(:room)
   end
 
   def create
-    room = Room.find(params[:room_id])
-    if current_user == room.user
+    @room = Room.find(params[:room_id])
+    if current_user == @room.user
       flash[:alert] = "オーナーが予約することはできません。"
     else
-      @reservation = current_user.reservations.build(params.require(:reservation).permit(:start_date, :end_date, :people))
-      reservation_calculate
-      @reservation.days = days
-      @reservation.room = room
-      @reservation.money = room.money
-      @reservation.total = room.money * days * room.people
-      @reservation.save
-      flash[:notice] = "予約が完了しました。"
+      @reservation = Reservation.new(params.require(:reservation).permit(:start_date, :end_date, :people, :total))
+      @reservation.total = @reservation.sum_of_price
     end
-      redirect_to :reservations_confirm
   end
 
   def confirm
-    room = Room.find(params[:room_id])
-    reservation_calculate
-    @reservation.days = days
-    @reservation.room = room
-    @reservation.money = room.money
-    @reservation.total = room.money * days * room.people
+    @room = Room.find(params[:room_id])
+    @reservation = Reservation.new(params.require(:reservation).permit(:start_date, :end_date, :people, :total))
+    if @room.invalid? 
+      redirect_to :rooms 
+    end
+    @reservation.days = @reservation.sum_of_days
+    @reservation.total = @reservation.sum_of_price
+    @reservation.save
+  end
+private
+
+  def sum_of_days
+    (start_date.to_date - end_date.to_date).to_i
+  end
+  
+  def sum_of_price
+    (room.price * people * sum_of_days).to_i
   end
 
-  
   end

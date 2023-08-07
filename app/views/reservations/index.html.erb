@@ -17,16 +17,16 @@
       <tr>
         <td>
         <% if reservation.room.home_image? %>
-            <%= image_tag reservation.room.home_image.url %>
+            <%= image_tag reservation.room.home_image.url, class:'home_image' %>
         <% else %>
-            <%= image_tag '/assets/default-home-image.png',:alt => '施設画像' %>
+            <%= image_tag '/assets/default-home-image.png',:alt => '施設画像', class:'home_image' %>
         <% end %>
         </td>
         <td><%= link_to reservation.room.home_name, reservation %></td>
         <td><%= reservation.room.home_type %></td>
         <td><%= reservation.total %></td>
-        <td><%= reservation.start_date %></td>
-        <td><%= reservation.end_date %></td>
+        <td><%= reservation.start_date.strftime("%Y/ %m/ %d") %></td>
+        <td><%= reservation.end_date.strftime("%Y/ %m/ %d") %></td>
         <td><%= reservation.created_at.strftime("%Y/ %m/ %d") %></td>
       </tr>
     <% end %>

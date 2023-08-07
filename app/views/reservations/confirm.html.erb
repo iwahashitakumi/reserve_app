@@ -1,16 +1,17 @@
 <h3>予約の確認</h3>
+<%= form_with model:@reservation, url: reservations_confirm_path(@room), local:true do |reservation| %> 
 <table>
   <tr>
     <th>チェックイン</th>
-    <td><%= @reservation.start_date %</td>
+    <td><%= @reservation.start_date.strftime("%Y/ %m/ %d") %</td>
   </tr>
   <tr>
     <th>チェックアウト</th>
-    <td><%= @reservation.end_date %></td>
+    <td><%= @reservation.end_date.strftime("%Y/ %m/ %d") %></td>
   </tr>
   <tr>
     <th>人数</th>
-    <td><%= @reservation.people %></td>
+    <td><%= @reservation.people.to_i %>人</td>
   </tr>
   <tr>
     <th>日数</th>
@@ -22,7 +23,17 @@
   </tr>
 </table>
 <p>上記内容で正しければ「確定」ボタンを押してください。</p>
-<ul>
-    <li><%= link_to "確定する", :reservetions_confirm %></li>
+  <tr>
+    <td>
+        <%= reservation.submit "予約を確定" %>
+    </td>
+  </tr>
+</table>
     <li><%= link_to "キャンセル", :back %></li>
 </ul>
+ <%= reservation.hidden_field :user_id, value: current_user.id %>
+ <%= reservation.hidden_field :room_id, value:@reservation.room.id %>
+ <%= reservation.hidden_field :people, value:@reservation.people %>
+ <%= reservation.hidden_field :start_date %>
+ <%= reservation.hidden_field :end_date %>
+<% end %>

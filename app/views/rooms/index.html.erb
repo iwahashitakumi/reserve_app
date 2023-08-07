@@ -22,7 +22,7 @@
       <tr>
         <td>
         <% if room.home_image? %>
-            <%= image_tag room.home_image.url %>
+            <%= image_tag room.home_image.url,class: 'home_image' %>
         <% else %>
             <%= image_tag '/assets/default-home-image.png',:alt => '施設画像', class: 'home_image' %>
         <% end %>

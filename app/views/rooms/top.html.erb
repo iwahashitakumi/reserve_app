@@ -1,7 +1,8 @@
-<%= search_form_for @q do |f| %>
-  <!--name_contは、あいまい検索を指定-->
-  <%= f.label :address_cont, "住所" %>
-  <%= f.search_field :address_cont %>
+<%= search_form_for @q, url: rooms_search_path do |f| %>
+  <%= f.label :address_cont, "エリア" %>
+  <%= f.search_field :address_cont, placeholder: "エリア名を検索" %>
+  <%= f.label :home_name_or_home_type_cont, "キーワード" %>
+  <%= f.search_field :home_name_or_home_type_cont, placeholder: "キーワード名を検索" %>
   <%= f.submit "検索" %>
 <% end %>
 

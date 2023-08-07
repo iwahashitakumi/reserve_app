@@ -21,6 +21,7 @@ class RoomsController < ApplicationController
   end
 
  def show
+  @reservation = Reservation.new
   @room = Room.find(params[:id])
  end
 
@@ -44,6 +45,12 @@ class RoomsController < ApplicationController
      @room.destroy
      flash[:notice] = "予定を削除しました"
      redirect_to :rooms_index
+ end
+
+ def search
+  @user = current_user.id
+  @q = Room.ransack(params[:q])
+  @rooms = @q.result(distinct: true)
  end
 
  def top
