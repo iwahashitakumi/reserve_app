@@ -1,5 +1,8 @@
-<%= form_with model: @reservation, method: :get, url: reservations_confirm_path(@room), local: true do |f| %>
+<%= form_with model: @reservation, method: :get, url:reservations_confirm_path(@room), local: true do |f| %>
 <table>
+<p>
+     ¥<%= @room.money %>/日
+</p><br>
    <tr>
      <th><%= f.label :start_date ,"チェックイン" %></th>
      <td><%= f.date_field :start_date,  placeholder: "イン" %></td>

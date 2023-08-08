@@ -7,3 +7,24 @@
 <% end %>
 
 <h3>あなたも旅に出よう</h3>
+
+<p >おすすめのエリア</p>
+       <div>
+        <span>東京</span>
+        <%= link_to image_tag( '/assets/img_tokyo.jpg', class: "image", alt: "東京" ), rooms_search_path(q:{address_cont:"東京"}) %>
+       </div>
+       
+       <div class="panel-area col-lg-3 col-6">
+        <span>大阪</span>
+        <%= link_to image_tag( '/assets/img_osaka.jpg', class: "image", alt: "大阪"), rooms_search_path(q:{address_cont:"大阪"}) %>
+       </div>
+       
+       <div class="panel-area col-lg-3 col-6">
+        <span>京都</span>
+        <%= link_to image_tag( '/assets/img_kyoto.jpg', class: "image", alt: "京都"), rooms_search_path(q:{address_cont:"京都"}) %>
+       </div>
+       
+       <div class="panel-area col-lg-3 col-6">
+        <span>札幌</span>
+        <%= link_to link_to image_tag( '/assets/img_sapporo.jpg', class: "image", alt: "札幌" ), rooms_search_path(q:{address_cont:"札幌"}) %>
+       </div>

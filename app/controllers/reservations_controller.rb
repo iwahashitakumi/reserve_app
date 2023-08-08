@@ -5,34 +5,36 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.all.includes(:room)
   end
 
+  def new
+    @user = current_user
+    @reservation = Reservation.new
+  end
+
   def create
     @room = Room.find(params[:room_id])
     if current_user == @room.user
       flash[:alert] = "オーナーが予約することはできません。"
     else
-      @reservation = Reservation.new(params.require(:reservation).permit(:start_date, :end_date, :people, :total))
-      @reservation.total = @reservation.sum_of_price
+      @reservation = Reservation.new(params.require(:reservation).permit(:start_date, :end_date, :people, :total, :user_id, :room_id))
+      @reservation.total = @reservation.room.money * @reservation.people * (@reservation.end_date.to_date - @reservation.start_date.to_date).to_i
+      if @reservation.save
+        redirect_to reservations_path
+      else
+        render "new"
+      end
     end
   end
 
   def confirm
-    @room = Room.find(params[:room_id])
-    @reservation = Reservation.new(params.require(:reservation).permit(:start_date, :end_date, :people, :total))
+    @room = Room.find(params[:reservation][:room_id])
+    @reservation = Reservation.new(params.require(:reservation).permit(:start_date, :end_date, :people, :total, :user_id, :room_id))
     if @room.invalid? 
       redirect_to :rooms 
     end
-    @reservation.days = @reservation.sum_of_days
-    @reservation.total = @reservation.sum_of_price
-    @reservation.save
+    @reservation.total =  @reservation.room.money * @reservation.people * (@reservation.end_date.to_date - @reservation.start_date.to_date).to_i
   end
-private
 
-  def sum_of_days
-    (start_date.to_date - end_date.to_date).to_i
-  end
+
   
-  def sum_of_price
-    (room.price * people * sum_of_days).to_i
-  end
 
   end
