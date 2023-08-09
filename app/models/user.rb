@@ -1,8 +1,6 @@
 class User < ApplicationRecord
   has_many :rooms
   has_many :reservations
-
-  validates :name, presence: true
   mount_uploader :image, ImageUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
