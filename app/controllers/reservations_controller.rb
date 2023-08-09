@@ -11,16 +11,14 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @room = Room.find(params[:room_id])
+    @room = Room.find(params[:reservation][:room_id])
     if current_user == @room.user
       flash[:alert] = "オーナーが予約することはできません。"
     else
       @reservation = Reservation.new(params.require(:reservation).permit(:start_date, :end_date, :people, :total, :user_id, :room_id))
-      @reservation.total = @reservation.room.money * @reservation.people * (@reservation.end_date.to_date - @reservation.start_date.to_date).to_i
+      @reservation.total = @reservation.room.money * @reservation.people * (@reservation.end_date.to_date + 1.day - @reservation.start_date.to_date ).to_i
       if @reservation.save
         redirect_to reservations_path
-      else
-        render "new"
       end
     end
   end
@@ -31,10 +29,7 @@ class ReservationsController < ApplicationController
     if @room.invalid? 
       redirect_to :rooms 
     end
-    @reservation.total =  @reservation.room.money * @reservation.people * (@reservation.end_date.to_date - @reservation.start_date.to_date).to_i
+    @reservation.total =  @reservation.room.money * @reservation.people * (@reservation.end_date.to_date - @reservation.start_date.to_date ).to_i
   end
-
-
-  
 
   end
