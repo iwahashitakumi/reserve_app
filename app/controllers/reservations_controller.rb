@@ -13,7 +13,7 @@ class ReservationsController < ApplicationController
   def create
     @room = Room.find(params[:reservation][:room_id])
     if current_user == @room.user
-      flash[:alert] = "オーナーが予約することはできません。"
+      redirect_to room_path(@room), alert: "オーナーが予約することはできません。"
     else
       @reservation = Reservation.new(params.require(:reservation).permit(:start_date, :end_date, :people, :total, :user_id, :room_id))
       @reservation.total = @reservation.room.money * @reservation.people * (@reservation.end_date.to_date + 1.day - @reservation.start_date.to_date ).to_i
