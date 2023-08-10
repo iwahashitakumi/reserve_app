@@ -24,7 +24,7 @@
         </td>
         <td><%= link_to reservation.room.home_name, reservation.room %></td>
         <td><%= reservation.room.home_type %></td>
-        <td><%= reservation.total %></td>
+        <td><%= reservation.room.money * @reservation.people * (@reservation.end_date.to_date + 1.day - @reservation.start_date.to_date ).to_i%></td>
         <td><%= reservation.start_date.strftime("%Y/ %m/ %d") %></td>
         <td><%= reservation.end_date.strftime("%Y/ %m/ %d") %></td>
         <td><%= reservation.created_at.strftime("%Y/ %m/ %d /%H:%M") %></td>
