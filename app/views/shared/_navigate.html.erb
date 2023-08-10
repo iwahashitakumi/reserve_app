@@ -7,7 +7,7 @@
         <li class="nav-item dropdown">
             <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <% if current_user.image? %>
-              <%= image_tag(current_user.image) %>
+              <%= image_tag current_user.image.url , class: 'profile'%>
              <% else %>
               <%= image_tag '/assets/default-avatar-image.png',alt: 'プロフィール画像', class: 'profile' %>
              <% end %>

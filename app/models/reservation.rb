@@ -1,10 +1,10 @@
 class Reservation < ApplicationRecord
-  belongs_to :user
-  belongs_to :room
+  belongs_to :user, dependent: :destroy
+  belongs_to :room, dependent: :destroy
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :people, presence: true
-  validates :price, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9_999_999 },
+  validates :people, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9_999_999 },
                   format: { with: /\A[0-9]+\z/ }
   validates :end_date, comparison: { greater_than: :start_date }
  

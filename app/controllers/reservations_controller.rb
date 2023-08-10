@@ -19,6 +19,8 @@ class ReservationsController < ApplicationController
       @reservation.total = @reservation.room.money * @reservation.people * (@reservation.end_date.to_date + 1.day - @reservation.start_date.to_date ).to_i
       if @reservation.save
         redirect_to reservations_path
+      else
+        redirect_to room_path(@room), alert: "予約できてません"
       end
     end
   end

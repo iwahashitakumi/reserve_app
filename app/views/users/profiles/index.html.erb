@@ -9,7 +9,7 @@
      <th>アイコン画像</th>
      <td>
         <% if @users.image? %>
-           <%= image_tag(@users.image) %>
+           <%= image_tag @users.image.url , class: 'profile' %>
          <% else %>
           <%= image_tag '/assets/default-avatar-image.png',alt: 'プロフィール画像', class: 'profile' %>
         <% end %>
