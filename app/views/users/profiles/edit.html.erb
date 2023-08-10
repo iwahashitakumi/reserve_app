@@ -23,4 +23,14 @@
        <li><%= link_to "キャンセル", :back %></li>
      </ul>
    </div>
- <% end %>
+
+   <% if @user.errors.any? %>
+    <div class="error_exclamation">
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+  <% end %>
