@@ -15,8 +15,7 @@ class RoomsController < ApplicationController
    if @room.save
      redirect_to :rooms_index, notice: "保存しました。"
    else
-     flash[:alert] = "問題が発生しました。"
-     redirect_to :rooms_index
+     redirect_to :new_room, alert: "問題が発生しました"
    end
   end
 
@@ -35,8 +34,8 @@ class RoomsController < ApplicationController
        flash[:notice] = "ルームIDが「#{@room.id}」の情報を更新しました"
        redirect_to :rooms_index
      else
-       flash[:false] = "予定の登録に失敗しました。"
-       redirect_to :rooms_index
+       flash[:false] = "施設の登録に失敗しました。"
+       redirect_to :edit_room
      end
  end
 
