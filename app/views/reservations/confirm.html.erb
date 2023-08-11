@@ -1,0 +1,47 @@
+<h3>予約の確認</h3>
+<% if @reservation.invalid? %>
+  <h2>ルームの入力が不十分です</h3>
+  <li><%= link_to "戻る", :back %></li>
+<% else %>
+<table>
+  <tr>
+    <th>チェックイン</th>
+    <td><%= @reservation.start_date.strftime("%Y/ %m/ %d") %></td>
+  </tr>
+  <tr>
+    <th>チェックアウト</th>
+    <td><%= @reservation.end_date.strftime("%Y/ %m/ %d") %></td>
+  </tr>
+  <tr>
+    <th>人数</th>
+    <td><%= @reservation.people.to_i %>人</td>
+  </tr>
+  <tr>
+    <th>日数</th>
+    <td><%=  (@reservation.end_date.to_date - @reservation.start_date.to_date).to_i %></td>
+  </tr>
+  <tr>
+    <th>お支払い金額</th>
+    <td><%= @reservation.room.money * @reservation.people * (@reservation.end_date.to_date + 1.day - @reservation.start_date.to_date ).to_i %></td>
+  </tr>
+</table>
+<table>
+<p>上記内容で正しければ「確定」ボタンを押してください。</p>
+<ul>
+    <li><%= link_to "キャンセル", :back %></li>
+</ul>
+<%= form_with model:@reservation,url:reservations_path(@reservation), local:true do |reservation| %> 
+ <%= reservation.hidden_field :user_id, value: current_user.id %>
+ <%= reservation.hidden_field :room_id, value:@reservation.room.id %>
+ <%= reservation.hidden_field :people, value:@reservation.people %>
+ <%= reservation.hidden_field :total, value:@reservation.total %>
+ <%= reservation.hidden_field :start_date, value:@reservation.start_date %>
+ <%= reservation.hidden_field :end_date, value:@reservation.end_date %>
+ <tr>
+    <td>
+        <%= reservation.submit "予約を確定" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<% end %>

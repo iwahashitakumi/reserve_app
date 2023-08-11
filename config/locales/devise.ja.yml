@@ -10,6 +10,7 @@ ja:
         current_sign_in_at: 現在のログイン時刻
         current_sign_in_ip: 現在のログインIPアドレス
         email: Eメール
+        image: プロフィール画像
         name: 名前
         introduction: 自己紹介文
         encrypted_password: 暗号化パスワード
@@ -126,7 +127,7 @@ ja:
         sign_in: ログイン
         sign_in_with_provider: "%{provider}でログイン"
         sign_up: アカウント登録
-      minimum_password_length: "（%{count}字以上）"
+        minimum_password_length: "(%{count}字以上)"
     unlocks:
       new:
         resend_unlock_instructions: アカウントのロック解除方法を再送する

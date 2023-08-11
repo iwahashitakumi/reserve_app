@@ -1,0 +1,20 @@
+<h2>アカウント</h2>
+
+ <table>
+   <tr>
+     <th>メールアドレス</th>
+     <td><%= @users.email%></td>
+   </tr>
+   <tr>
+     <th>パスワード</th>
+     <td>*********</td>
+   </tr>
+   <tr>
+     <th>編集</th>
+     <td><%= link_to "編集", edit_user_registration_path %></td>
+   </tr>
+   <tr>
+     <th>プロフィール</th>
+     <td><%= link_to "プロフィールページへ", users_profiles_path %></td>
+   </tr>
+ </table>

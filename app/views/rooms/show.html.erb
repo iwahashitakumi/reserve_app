@@ -1,0 +1,33 @@
+<h3>施設詳細</h3>
+<%= alert %>
+<table>
+  <tr>
+    <th>画像</th>
+    <td>
+      <% if @room.home_image? %>
+          <%= image_tag @room.home_image.url, class:'home_image' %>
+      <% else %>
+          <%= image_tag '/assets/default-home-image.png',:alt => '施設画像', class:'home_image' %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>施設名</th>
+    <td><%= @room.home_name %></td>
+  </tr>
+  <tr>
+    <th>紹介文</th>
+    <td><%= @room.home_type %></td>
+  </tr>
+  <tr>
+    <th>料金</th>
+    <td><%= @room.money %></td>
+  </tr>
+</table>
+
+<div>
+<%= render 'reservations/form' %> 
+  <ul>
+    <li><%= link_to "直前に戻る", :back %></li>
+  </ul>
+</div>

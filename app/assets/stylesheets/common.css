@@ -1,0 +1,27 @@
+table th {
+  background-color: #fbc25b;
+  padding: 10px 20px;
+}
+
+table td {
+  background-color: #f9ecd5;
+  padding: 10px 20px;
+}
+
+.notice {
+  background-color: #ccf;
+  padding: 5px;
+}
+
+.home_image {
+  width: 120px;
+}
+.image{
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.profile {
+  width: 40px;
+}

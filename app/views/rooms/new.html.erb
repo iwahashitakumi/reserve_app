@@ -1,33 +1,33 @@
 <h3>ユーザー新規作成</h3>
- 
+ <%= alert %>
  <%= form_with model: @room do |f| %>
    <table>
      <tr>
        <th><%= f.label :home_name ,"施設名" %></th>
-       <td><%= f.text_field :home_name %></td>
+       <td><%= f.text_field :home_name, placeholder:"ルーム名を入力" %></td>
      </tr>
  
      <tr>
        <th><%= f.label :home_type ,"施設詳細" %></th>
-       <td><%= f.text_area :home_type %></td>
+       <td><%= f.text_area :home_type, placeholder:"施設詳細を入力" %></td>
      </tr>
  
      <tr>
        <th><%= f.label :money ,"料金" %></th>
-       <td><%= f.text_field :money %></td>
+       <td><%= f.text_field :money, placeholder:"一日あたりの料金を入力" %></td>
      </tr>
  
      <tr>
        <th><%= f.label :address ,"住所" %></th>
-       <td><%= f.text_field :address %></td>
+       <td><%= f.text_field :address, placeholder:"住所を入力" %></td>
      </tr>
 
      <tr>
-       <th><%= f.label :home_image ,"画像をアップロード" %></th>
-       <td><%= f.file_field :home_image, class: "home_image" %></td>
+       <th><%= f.label :home_image ,"施設画像" %></th>
+       <td><%= f.file_field :home_image, placeholder:"画像をアップロード", class: "home_image" %></td>
      </tr>
    </table>
- 
+       <%= f.hidden_field :user_id, value: @user.id %>
    <div>
      <ul>
        <li><%= f.submit "保存する"%></li>
